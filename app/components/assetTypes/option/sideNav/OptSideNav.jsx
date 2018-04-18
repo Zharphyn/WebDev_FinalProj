@@ -8,16 +8,37 @@ export default class OptSideNav extends Component {
   }
 
   sideNavBtnClickHandler (e) {
-    this.props.setCurrentViewOnSideNavClick(e.target.value);
+    this.props.setCurrentViewOnSideNavClick(e.currentTarget.value);
   }
 
   render () {
     return (
-      <nav>
-        <p>sidenav</p>
-        <button type="button" value="priceView" onClick={this.sideNavBtnClickHandler}>priceView</button>
-        <button type="button" value="stratView" onClick={this.sideNavBtnClickHandler}>stratView</button>
-      </nav>
+      <div className="col-1 reset-padding" id="side-nav">
+        <ul className="list-unstyled">
+          <li>
+            <button 
+              className="btn btn-outline-info"
+              type="button" 
+              value="priceView" 
+              onClick={this.sideNavBtnClickHandler}>
+              <i className="far fa-list-alt nav-icon"></i>
+            </button>
+            <br/>
+            Option Chain
+          </li>
+          <li>
+            <button 
+              className="btn btn-outline-info"
+              type="button" 
+              value="stratView" 
+              onClick={this.sideNavBtnClickHandler}>
+              <i className="far fa-chart-bar nav-icon"></i>
+            </button>
+            <br/>
+            Analysis
+          </li>
+        </ul>
+      </div>
     )
   }
 }

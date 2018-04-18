@@ -6,36 +6,50 @@ export default class ExamineList extends Component {
 
   render () {
     const row = this.props.examineList.map((row, index) => (
-      //get the data from server
       <ExamineListRow
         key={index}
+        option={row}
         description={row.description}
         bid={row.bid}
         ask={row.ask}
+        addToSelectedTrades={this.props.addToSelectedTrades}
+        currentView={this.props.currentView}
       />
     ))
 
-    return (
-      <div>
-        <h3>Examine List</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Option</th>
-              <th>Bid</th>
-              <th>Ask</th>
-            </tr>
-          </thead>
+    const overflow = {
+      overflow: 'scroll'
+    }
 
-          <tbody>
-            {row}
-          </tbody>
-        </table>  
+    return (
+      <div className="col" style={overflow}>
+        <div id={this.props.currentView === 'stratView' ? 'stratView-examine' : 'examinelist'}>
+          <div className="examinelist-header">
+            <label>Examine List</label>
+          </div>
+          <table className="table table-hover table-bordered table-striped">
+            <thead className="thead-dark">
+              <tr>
+                <th>Option</th>
+                <th>Bid</th>
+                <th>Ask</th>
+                {this.props.currentView === 'stratView' ? <th>Quantity</th> : null}
+                {this.props.currentView === 'stratView' ? <th colSpan='2'>Action</th> : null}
+              </tr>
+            </thead>
+
+            <tbody>
+              {row}
+            </tbody>
+          </table> 
+        </div> 
       </div> 
     )
   }
 }
 
 ExamineList.propTypes = {
- examineList: PropTypes.array 
+ examineList: PropTypes.array,
+ addToSelectedTrades: PropTypes.func,
+ currentView: PropTypes.string
 }

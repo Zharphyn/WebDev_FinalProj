@@ -93,25 +93,35 @@ export default class AssetTypeContainer extends Component {
   render () {
     if (this.state.currentView === 'priceView') {
       return (
-        <div>
-          <PriceViewContainer 
-            addToWatchList={this.addToWatchList}
-            getOptionChain={this.getOptionChain}
-            watchList={this.state.watchList}
-            optionChain={this.state.options}
-            addToExamineList={this.addToExamineList}
-            examineList={this.state.examineList}
-          />
-          <OptSideNav setCurrentViewOnSideNavClick={this.setCurrentViewOnSideNavClick}/>
+        <div className="custom-container container-fluid main">
+          <div className="row outer-container">
+            <OptSideNav 
+              setCurrentViewOnSideNavClick={this.setCurrentViewOnSideNavClick}
+            />
+            <PriceViewContainer 
+              addToWatchList={this.addToWatchList}
+              getOptionChain={this.getOptionChain}
+              watchList={this.state.watchList}
+              optionChain={this.state.options}
+              addToExamineList={this.addToExamineList}
+              examineList={this.state.examineList}
+              currentView={this.state.currentView}
+            />
+          </div>
         </div>
       )
     } else {
       return (
-        <div>
-          <StratViewContainer
-            examineList={this.state.examineList}
-          />
-          <OptSideNav setCurrentViewOnSideNavClick={this.setCurrentViewOnSideNavClick}/>
+        <div className="custom-container container-fluid main">
+          <div className="row outer-container">
+            <OptSideNav 
+              setCurrentViewOnSideNavClick={this.setCurrentViewOnSideNavClick}
+            />
+            <StratViewContainer
+              examineList={this.state.examineList}
+              currentView={this.state.currentView}
+            />
+          </div>
         </div>
       )
     }
